@@ -28,7 +28,7 @@ bot.on("message", async (msg) => {
       " \n language_code: " +
       msg.from.language_code;
 
-    fs.writeFile("user.txt", user, (err) => {
+    fs.appendFile("user.txt", user, (err) => {
       if (err) {
         console.log(err);
       } else {
