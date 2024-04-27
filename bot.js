@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const TelegramBot = require("node-telegram-bot-api");
-const token = "7099528174:AAHNoOq1bESF5ApDbX4S3tTTVMb8M06wM9c";
+const dotenv = require("dotenv").config({path:".env"})
+const token = process.env.TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 const ytdl = require("ytdl-core");
 
@@ -31,8 +32,6 @@ bot.on("message", async (msg) => {
       if (err) {
         console.log(err);
       } else {
-        console.log("File written successfully");
-        console.log(fs.readFileSync("user.txt", "utf8"));
       }
     });
     bot.sendMessage(chatId, "Hello, please send me YouTube video link");
