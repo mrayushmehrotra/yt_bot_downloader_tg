@@ -2,13 +2,16 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const TelegramBot = require("node-telegram-bot-api");
-const dotenv = require("dotenv").config({path:".env"})
+const dotenv = require("dotenv").config({ path: ".env" });
 const token = process.env.TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 const ytdl = require("ytdl-core");
 
 app.get("/", (req, res) => {
-  res.send("Server is working fine");
+  res.status(200).json({
+    success: true,
+    message: "Server is up and running for youtube video downloader bot",
+  });
 });
 
 bot.on("message", async (msg) => {
